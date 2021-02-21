@@ -225,11 +225,12 @@ int32_t lInterruptMask;
 }
 /*-----------------------------------------------------------*/
 
-BaseType_t xPortUsesFloatingPoint( TaskHandle_t xTask )
+BaseType_t xPortUsesFloatingPoint( void* _xTask )
 {
 uint32_t *pulFlopBuffer;
 BaseType_t xReturn;
 extern void * volatile pxCurrentTCB;
+TaskHandle_t xTask = (TaskHandle_t)_xTask;
 
 	/* This function tells the kernel that the task referenced by xTask is
 	going to use the floating point registers and therefore requires the
